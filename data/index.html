@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A basic web page</title>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="data:,">
+  
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1>PT Landkrone Indonutri</h1>
+		<p>Tes Pembacaaan Energi meter Perfector Line 1</p>
+	</div>
+	
+	<div>
+	  <h1>ESP8266 Web Server</h1>
+	
+	  <p>
+		<span class="sensor-labels">Arus: </span>
+		<span id="temperature">%TEMPERATURE%</span>
+		<sup class="units">Ampere</sup>
+	  </p>
+	  <p>
+		<span class="sensor-labels">Daya: </span>
+		<span id="humidity">%HUMIDITY%</span>
+		<sup class="units">Watt;</sup>
+	  </p>
+	
+	 </div>
+
+</body>
+
+
+<script>
+	
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("temperature").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/temperature", true);
+    xhttp.send();
+  }, 2000 ) ;
+
+
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("humidity").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/humidity", true);
+    xhttp.send();
+  }, 2000 ) ;
+  
+</script>
+
+</html>
